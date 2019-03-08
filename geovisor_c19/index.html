@@ -18,7 +18,7 @@
             margin: 0;
         }
         </style>
-        <title></title>
+        <title>Comuna_19</title>
     </head>
     <body>
         <div id="map">
@@ -44,7 +44,7 @@
 
             if (e.target.feature.geometry.type === 'LineString') {
               highlightLayer.setStyle({
-                color: '#ffff00',
+                color: '#06faf2',
               });
             } else {
               highlightLayer.setStyle({
@@ -59,7 +59,7 @@
         })
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        L.control.locate({locateOptions: {maxZoom: 15}}).addTo(map);
         var measureControl = new L.Control.Measure({
             position: 'topleft',
             primaryLengthUnit: 'meters',
@@ -280,6 +280,11 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
+            
+        var wmsLayer = L.tileLayer.wms('http://ws-idesc.cali.gov.co:8081/geoserver/wms?service=WMS&version=1.1.0', {
+              layers: 'idesc:mc_barrios'
+        }).addTo(map);
+            
         L.control.layers(baseMaps,{'<img src="legend/CComerciales19_2.png" /> CComerciales19': layer_CComerciales19_2,'<img src="legend/ViasPPal19_1.png" /> ViasPPal19': layer_ViasPPal19_1,'<img src="legend/Barrios19_0.png" /> Barrios19': layer_Barrios19_0,}).addTo(map);
         setBounds();
         var i = 0;
